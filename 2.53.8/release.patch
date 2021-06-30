@@ -1,0 +1,25 @@
+# 2.53.8 release patch
+# User Mattias WeiB <info@codeandcreate.de>
+# Date 1625045147 0
+
+--- org/seamonkey-2.53.8/build/moz.configure/old.configure	2021-03-01 19:17:56.000000000 +0100
++++ seamonkey-2.53.8/build/moz.configure/old.configure	2021-06-30 09:42:03.742374128 +0200
+@@ -33,7 +33,7 @@
+     autoconf = autoconf[0] if autoconf else None
+
+     for ac in (mozconfig_autoconf, autoconf, 'autoconf-2.13', 'autoconf2.13',
+-               'autoconf213'):
++               'autoconf213', 'autoconf'):
+         if ac:
+             autoconf = find_program(ac)
+             if autoconf:
+--- org/seamonkey-2.53.8/js/src/vm/DateTime.cpp	2020-08-10 13:30:35.000000000 +0200
++++ seamonkey-2.53.8/js/src/vm/DateTime.cpp	2021-06-30 09:41:37.966929146 +0200
+@@ -22,6 +22,7 @@
+ #endif /* !defined(XP_WIN) */
+
+ #include "jsutil.h"
++#include "jsstr.h"
+
+ #include "js/Date.h"
+ #include "threading/ExclusiveData.h"
