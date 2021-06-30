@@ -1,5 +1,5 @@
-# Seamonkey for Debian/Arm64
-Patches and builds for [Seamonkey](https://www.seamonkey-project.org) on Debian (bullseye/unstable) on Arm64.
+# SeaMonkey for Debian/Arm64
+Patches and builds for [SeaMonkey](https://www.seamonkey-project.org) on Debian (bullseye/unstable) on Arm64.
 
 The license in this repository only applies to my patches! The builds released under the same license(s) Seamonkey uses. Please look at the "LICENSE"-file bundled with the sources of Seamonkey.
 
