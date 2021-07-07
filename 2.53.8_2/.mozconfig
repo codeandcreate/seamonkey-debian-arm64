@@ -4,15 +4,12 @@ ac_add_options --enable-application=comm/suite
 ac_add_options --enable-calendar
 ac_add_options --enable-irc
 ac_add_options --enable-dominspector
-mk_add_options MOZ_OBJDIR=/home/scops/Development/seamonkey/seamonkey-2.53.8/mozobj
+mk_add_options MOZ_OBJDIR=[path to your build directory]/seamonkey/seamonkey-2.53.8/mozobj
 ac_add_options --enable-optimize
 ac_add_options --enable-js-shell
 #ac_add_options --enable-elf-hack
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-tests
-
-#to aviod webrtc building errors atm
-#ac_add_options --disable-webrtc
 
 # Disable checking that add-ons are signed by the trusted root
 MOZ_ADDON_SIGNING=0
