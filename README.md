@@ -5,11 +5,13 @@ The license in this repository only applies to my patches! The builds released u
 
 ## Status and versions
 
+- **Release 2.53.8_2** the same as before but with webrtc enabled 
 - **Release 2.53.8** is configured and compiled without webrtc, since the sources doesn't include the Arm64 stuff of modern Firefox (...) that is necessary for a successfull compilation.
 
 ## Preparations and compiling yourself
 
 - To compile Seamonkey yourself with this patches you should carefully read the [SeaMonkey Building & Source Code Documentation](https://www.seamonkey-project.org/dev/code-development)!
+- make sure autoconf 2.13 is installed - on Debian: ```apt install autoconf2.13```
 - Always use the [lastest version of rust/cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html), not the version of the official debian repositories!
 - Create a directory like "~/Development/seamonkey"
 - In this directory check out https://github.com/giampaolo/psutil or download and untar/unzip a release - i use release-5.8.0
