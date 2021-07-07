@@ -1,0 +1,69 @@
+# HG changeset patch
+# User Mattias WeiB <info@codeandcreate.de>
+# Date 1624046143 0
+Bug 9999999 - Allow building on for aarch64 target.
+
+diff --git a/js/src/vm/DateTime.cpp b/js/src/vm/DateTime.cpp
+--- a/js/src/vm/DateTime.cpp
++++ b/js/src/vm/DateTime.cpp
+@@ -1,14 +1,15 @@
+ /* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+  * vim: set ts=8 sts=4 et sw=4 tw=99:
+  * This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
++#include "jsstr.h"
+ #include "vm/DateTime.h"
+ 
+ #include "mozilla/ArrayUtils.h"
+ #include "mozilla/ScopeExit.h"
+ #include "mozilla/TextUtils.h"
+ #include "mozilla/Unused.h"
+ 
+ #include <algorithm>
+diff --git a/media/webrtc/trunk/moz.build b/media/webrtc/trunk/moz.build
+--- a/media/webrtc/trunk/moz.build
++++ b/media/webrtc/trunk/moz.build
+@@ -139,24 +139,38 @@ if CONFIG["OS_TARGET"] == "NetBSD":
+         "/media/webrtc/trunk/webrtc/modules/desktop_capture/primitives_gn",
+         "/media/webrtc/trunk/webrtc/modules/video_processing/video_processing_sse2_gn",
+         "/media/webrtc/trunk/webrtc/video_engine/video_engine_gn"
+     ]
+ 
+ if CONFIG["OS_TARGET"] == "Linux":
+ 
+     DIRS += [
++        "/media/webrtc/trunk/webrtc/modules/desktop_capture/desktop_capture_gn",
++        "/media/webrtc/trunk/webrtc/modules/desktop_capture/primitives_gn",
++        "/media/webrtc/trunk/webrtc/video_engine/video_engine_gn"
++    ]
++
++if CONFIG["CPU_ARCH"] != "aarch64" and CONFIG["OS_TARGET"] == "Linux":
++    DIRS += [
+         "/media/webrtc/trunk/webrtc/common_audio/common_audio_sse2_gn",
+         "/media/webrtc/trunk/webrtc/modules/audio_processing/audio_processing_sse2_gn",
+         "/media/webrtc/trunk/webrtc/modules/desktop_capture/desktop_capture_differ_sse2_gn",
+-        "/media/webrtc/trunk/webrtc/modules/desktop_capture/desktop_capture_gn",
+-        "/media/webrtc/trunk/webrtc/modules/desktop_capture/primitives_gn",
+         "/media/webrtc/trunk/webrtc/modules/video_processing/video_processing_sse2_gn",
+         "/media/webrtc/trunk/webrtc/system_wrappers/cpu_features_linux_gn",
+-        "/media/webrtc/trunk/webrtc/video_engine/video_engine_gn"
++    ]
++
++if CONFIG["CPU_ARCH"] == "aarch64" and CONFIG["OS_TARGET"] == "Linux":
++    DIRS += [
++        "/media/webrtc/trunk/webrtc/common_audio/common_audio_neon_c_gn",
++        "/media/webrtc/trunk/webrtc/common_audio/common_audio_neon_gn",
++        "/media/webrtc/trunk/webrtc/modules/audio_coding/isac_neon_gn",
++        "/media/webrtc/trunk/webrtc/modules/audio_processing/audio_processing_neon_c_gn",
++        "/media/webrtc/trunk/webrtc/modules/audio_processing/audio_processing_neon_gn",
++        "/media/webrtc/trunk/webrtc/modules/video_processing/video_processing_neon_gn"
+     ]
+ 
+ if CONFIG["OS_TARGET"] == "OpenBSD":
+ 
+     DIRS += [
+         "/media/webrtc/trunk/webrtc/common_audio/common_audio_sse2_gn",
+         "/media/webrtc/trunk/webrtc/modules/audio_processing/audio_processing_sse2_gn",
+         "/media/webrtc/trunk/webrtc/modules/desktop_capture/desktop_capture_differ_sse2_gn",
